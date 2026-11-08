@@ -1,0 +1,111 @@
+{
+  "featured": {
+    "workId": "we-live-by-eating-one-another",
+    "video": null
+  },
+  "works": [
+    {
+      "id": "we-live-by-eating-one-another",
+      "title": "We Live by Eating One Another",
+      "year": 2026,
+      "media": ["Web", "Media Art Performance", "Film"],
+      "format": {
+        "type": "video",
+        "duration": "3:16",
+        "durationSeconds": 196,
+        "dimensions": null
+      },
+      "myRoles": ["Director"],
+      "collaborators": [
+        { "role": "Dancer", "name": "Jang Bokyoung" },
+        { "role": "Sound Artist", "name": "On Jaehyun" },
+        { "role": "Camera Assistant", "name": "Chae Suhan" }
+      ],
+      "description": "2026.md",
+      "video": null,
+      "images": [
+        "WeLivebyEatingOneAnother_2026_1.jpg",
+        "WeLivebyEatingOneAnother_2026_2.jpg",
+        "WeLivebyEatingOneAnother_2026_3.jpg",
+        "WeLivebyEatingOneAnother_2026_4.jpg",
+        "WeLivebyEatingOneAnother_2026_5.jpg",
+        "WeLivebyEatingOneAnother_2026_6.jpg"
+      ]
+    },
+    {
+      "id": "ganpan",
+      "title": "Ganpan",
+      "year": 2025,
+      "media": ["Web", "Digital Art", "Risograph"],
+      "format": {
+        "type": "zine",
+        "duration": null,
+        "durationSeconds": null,
+        "dimensions": null
+      },
+      "myRoles": ["Artist", "Developer"],
+      "collaborators": [{ "role": "Co-developer", "name": "Jang Yewon" }],
+      "description": "2025.md",
+      "video": null,
+      "images": [
+        "Ganpan_2025_1.jpg",
+        "Ganpan_2025_2.jpg",
+        "Ganpan_2025_3.jpg",
+        "Ganpan_2025_4.jpg",
+        "Ganpan_2025_5.jpg"
+      ]
+    },
+    {
+      "id": "dance-in-the-virtual-theater",
+      "title": "Dance in the Virtual Theater",
+      "year": 2024,
+      "media": ["Web", "Interactive Performance"],
+      "format": {
+        "type": "web",
+        "duration": null,
+        "durationSeconds": null,
+        "dimensions": null
+      },
+      "myRoles": ["Director"],
+      "collaborators": [{ "role": "Dancer", "name": null }],
+      "description": "2024.md",
+      "video": null,
+      "images": [
+        "DanceintheVirtualTheater_2023_1.jpg",
+        "DanceintheVirtualTheater_2023_2.jpg",
+        "DanceintheVirtualTheater_2023_3.jpg",
+        "DanceintheVirtualTheater_2023_4.jpg",
+        "DanceintheVirtualTheater_2023_5.jpg",
+        "DanceintheVirtualTheater_2023_6.jpg"
+      ]
+    },
+    {
+      "id": "the-movement-of-converging",
+      "title": "The Movement of Converging",
+      "year": 2023,
+      "media": ["Media Art Performance", "Film"],
+      "format": {
+        "type": "video",
+        "duration": "2:25",
+        "durationSeconds": 145,
+        "dimensions": null
+      },
+      "myRoles": ["Director"],
+      "collaborators": [
+        { "role": "Dancer", "name": "Kang Minji" },
+        { "role": "Sound Artist", "name": "On Jaehyun" },
+        { "role": "Camera Assistant", "name": "Chae Suhan" }
+      ],
+      "description": "2023.md",
+      "video": null,
+      "images": [
+        "TheMovementofConverging_1.jpg",
+        "TheMovementofConverging_2.jpg",
+        "TheMovementofConverging_3.jpg",
+        "TheMovementofConverging_4.jpg",
+        "TheMovementofConverging_5.jpg",
+        "TheMovementofConverging_6.jpg"
+      ]
+    }
+  ]
+}
