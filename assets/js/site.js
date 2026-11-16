@@ -12,6 +12,30 @@
     if (a.dataset.nav === page) a.classList.add("is-active");
   });
 
+  /* ---------- language (KO / EN) ---------- */
+  // English texts live in info/en/ with the same file names as the Korean ones in info/.
+  var LANG = "ko";
+  try { if (localStorage.getItem("lang") === "en") LANG = "en"; } catch (e) {}
+  document.documentElement.lang = LANG;
+
+  var langSwitch = el("div", { class: "lang" });
+  ["ko", "en"].forEach(function (code, i) {
+    if (i) langSwitch.appendChild(el("span", { text: "/", "aria-hidden": "true" }));
+    var btn = el("button", {
+      type: "button",
+      text: code.toUpperCase(),
+      "aria-pressed": String(code === LANG),
+      class: code === LANG ? "is-active" : ""
+    });
+    btn.addEventListener("click", function () {
+      if (code === LANG) return;
+      try { localStorage.setItem("lang", code); } catch (e) {}
+      location.reload();
+    });
+    langSwitch.appendChild(btn);
+  });
+  document.querySelector(".nav").appendChild(langSwitch);
+
   /* ---------- helpers ---------- */
 
   function el(tag, attrs, children) {
@@ -37,6 +61,12 @@
       if (!r.ok) throw new Error(path + " " + r.status);
       return r.text();
     });
+  }
+
+  // Text in the current language; falls back to Korean if the English file is missing.
+  function getLocalText(file) {
+    if (LANG !== "en") return getText(INFO + file);
+    return getText(INFO + "en/" + file).catch(function () { return getText(INFO + file); });
   }
 
   // Blank-line separated paragraphs; single newlines become line breaks.
@@ -181,7 +211,7 @@
         });
 
         var load = texts[work.id] || (texts[work.id] = work.description
-          ? getText(INFO + work.description).catch(function () { return ""; })
+          ? getLocalText(work.description).catch(function () { return ""; })
           : Promise.resolve(""));
 
         load.then(function (md) {
@@ -224,7 +254,7 @@
   }
 
   function renderAbout() {
-    getText(INFO + "artiststatement.md").then(function (md) {
+    getLocalText("artiststatement.md").then(function (md) {
       var blocks = md.trim().split(/\n\s*\n/);
       var about = el("section", { class: "about" });
 

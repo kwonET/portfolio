@@ -71,6 +71,24 @@ video {
   font-weight: 300;
 }
 
+/* KO / EN switch */
+.lang {
+  display: flex;
+  gap: 4px;
+}
+.lang button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.lang button:hover,
+.lang button.is-active {
+  font-weight: 500;
+}
+
 /* work titles under WORK */
 .nav__works {
   display: flex;
