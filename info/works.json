@@ -1,7 +1,7 @@
 {
   "featured": {
     "workId": "we-live-by-eating-one-another",
-    "video": null
+    "video": "https://youtu.be/DQ9TPYi0XHc"
   },
   "works": [
     {
@@ -22,7 +22,11 @@
         { "role": "Camera Assistant", "name": "Chae Suhan" }
       ],
       "description": "2026.md",
-      "video": null,
+      "video": [
+        "https://youtu.be/DQ9TPYi0XHc",
+        "https://youtu.be/67wEKT40REI",
+        "https://youtu.be/hQwS0w2s0vo"
+      ],
       "images": [
         "WeLivebyEatingOneAnother_2026_1.jpg",
         "WeLivebyEatingOneAnother_2026_2.jpg",
@@ -97,7 +101,7 @@
         { "role": "Camera Assistant", "name": "Chae Suhan" }
       ],
       "description": "2023.md",
-      "video": null,
+      "video": "https://youtu.be/UsABTnScViw",
       "images": [
         "TheMovementofConverging_1.jpg",
         "TheMovementofConverging_2.jpg",

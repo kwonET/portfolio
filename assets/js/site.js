@@ -61,11 +61,15 @@
   }
 
   // Accepts a YouTube / Vimeo link, or a path to a video file (mp4, webm…).
-  function videoEmbed(url, title) {
+  // ambient: muted autoplay loop (used on HOME).
+  function videoEmbed(url, title, ambient) {
     var yt = url.match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);
     if (yt) {
+      var params = ambient
+        ? "?autoplay=1&mute=1&loop=1&playlist=" + yt[1] + "&controls=0&playsinline=1&rel=0"
+        : "?rel=0";
       return el("iframe", {
-        src: "https://www.youtube-nocookie.com/embed/" + yt[1] + "?rel=0",
+        src: "https://www.youtube-nocookie.com/embed/" + yt[1] + params,
         title: title || "video",
         allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
         allowfullscreen: "",
@@ -89,10 +93,16 @@
     return work.title + ", " + work.media.join(" / ") + ", " + work.year;
   }
 
-  // Top frame: video when there is one, otherwise the first image.
-  function heroFrame(work, video) {
-    var src = video || work.video;
-    if (src) return el("div", { class: "frame" }, [videoEmbed(src, work.title)]);
+  // work.video may be a single link or a list of links.
+  function videos(work) {
+    if (!work.video) return [];
+    return Array.isArray(work.video) ? work.video : [work.video];
+  }
+
+  // Top frame: first video when there is one, otherwise the first image.
+  function heroFrame(work, video, ambient) {
+    var src = video || videos(work)[0];
+    if (src) return el("div", { class: "frame" }, [videoEmbed(src, work.title, ambient)]);
     if (work.images && work.images.length) {
       return el("div", { class: "frame" }, [image(work.images[0], work.title, true)]);
     }
@@ -124,10 +134,10 @@
       var featured = data.featured || {};
       var work = data.works.filter(function (w) { return w.id === featured.workId; })[0] || data.works[0];
       main.appendChild(el("a", { href: "work.html#" + work.id, "aria-label": work.title }, [
-        heroFrame(work, featured.video)
+        heroFrame(work, featured.video, true)
       ]));
       // A playable video should not be wrapped in a link.
-      if (featured.video || work.video) {
+      if (featured.video || videos(work).length) {
         var link = main.firstChild;
         main.replaceChild(link.firstChild, link);
       }
@@ -158,15 +168,18 @@
           : Promise.resolve(""));
 
         load.then(function (md) {
-          // Gallery = every image not already shown in the top frame.
-          var rest = work.video ? work.images : work.images.slice(1);
+          // Gallery = remaining videos, then every image not already shown in the top frame.
+          var vids = videos(work);
+          var rest = vids.length ? work.images : work.images.slice(1);
           main.replaceChildren(el("article", { class: "work", id: "work-" + work.id }, [
             heroFrame(work),
             el("p", { class: "caption", text: caption(work) }),
             el("div", { class: "text" }, paragraphs(md).concat([credits(work)])),
-            el("div", { class: "gallery" }, rest.map(function (f) {
+            el("div", { class: "gallery" }, vids.slice(1).map(function (v) {
+              return el("div", { class: "frame frame--video" }, [videoEmbed(v, work.title)]);
+            }).concat(rest.map(function (f) {
               return el("div", { class: "frame" }, [image(f, work.title)]);
-            }))
+            })))
           ]));
           window.scrollTo(0, 0);
         });

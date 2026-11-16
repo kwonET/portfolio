@@ -160,6 +160,10 @@ video {
 .work .gallery .frame img {
   height: auto;
 }
+/* videos keep the 16:9 frame inside the gallery */
+.work .gallery .frame--video {
+  aspect-ratio: 16 / 9;
+}
 
 /* ---------- ABOUT ---------- */
 .main--about {
