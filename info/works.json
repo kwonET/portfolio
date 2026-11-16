@@ -1,7 +1,6 @@
 {
   "featured": {
-    "workId": "we-live-by-eating-one-another",
-    "video": "https://youtu.be/DQ9TPYi0XHc"
+    "workId": "we-live-by-eating-one-another"
   },
   "works": [
     {
@@ -22,11 +21,6 @@
         { "role": "Camera Assistant", "name": "Chae Suhan" }
       ],
       "description": "2026.md",
-      "video": [
-        "https://youtu.be/DQ9TPYi0XHc",
-        "https://youtu.be/67wEKT40REI",
-        "https://youtu.be/hQwS0w2s0vo"
-      ],
       "images": [
         "WeLivebyEatingOneAnother_2026_1.jpg",
         "WeLivebyEatingOneAnother_2026_2.jpg",
@@ -50,7 +44,6 @@
       "myRoles": ["Artist", "Developer"],
       "collaborators": [{ "role": "Co-developer", "name": "Jang Yewon" }],
       "description": "2025.md",
-      "video": null,
       "images": [
         "Ganpan_2025_1.jpg",
         "Ganpan_2025_2.jpg",
@@ -73,7 +66,6 @@
       "myRoles": ["Director"],
       "collaborators": [{ "role": "Dancer", "name": null }],
       "description": "2024.md",
-      "video": null,
       "images": [
         "DanceintheVirtualTheater_2023_1.jpg",
         "DanceintheVirtualTheater_2023_2.jpg",
@@ -101,12 +93,12 @@
         { "role": "Camera Assistant", "name": "Chae Suhan" }
       ],
       "description": "2023.md",
-      "video": "https://youtu.be/UsABTnScViw",
       "images": [
         "TheMovementofConverging_1.jpg",
         "TheMovementofConverging_2.jpg",
         "TheMovementofConverging_3.jpg",
         "TheMovementofConverging_4.jpg",
+        "TheMovementofConverging_4_2.jpg",
         "TheMovementofConverging_5.jpg",
         "TheMovementofConverging_6.jpg"
       ]

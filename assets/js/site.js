@@ -93,10 +93,27 @@
     return work.title + ", " + work.media.join(" / ") + ", " + work.year;
   }
 
-  // work.video may be a single link or a list of links.
+  // works.json + videos.json → each work gets a `videos` list; featured gets `video`.
+  // In videos.json a work's entry may be a single link or a list of links.
+  function loadWorks() {
+    var vids = getJSON(INFO + "videos.json").catch(function (err) {
+      console.warn(err);
+      return {};
+    });
+    return Promise.all([getJSON(INFO + "works.json"), vids]).then(function (r) {
+      var data = r[0], v = r[1] || {}, byWork = v.works || {};
+      data.works.forEach(function (w) {
+        var list = byWork[w.id];
+        w.videos = (Array.isArray(list) ? list : list ? [list] : []).filter(Boolean);
+      });
+      data.featured = data.featured || {};
+      data.featured.video = v.featured || null;
+      return data;
+    });
+  }
+
   function videos(work) {
-    if (!work.video) return [];
-    return Array.isArray(work.video) ? work.video : [work.video];
+    return work.videos || [];
   }
 
   // Top frame: first video when there is one, otherwise the first image.
@@ -130,7 +147,7 @@
   /* ---------- pages ---------- */
 
   function renderHome() {
-    getJSON(INFO + "works.json").then(function (data) {
+    loadWorks().then(function (data) {
       var featured = data.featured || {};
       var work = data.works.filter(function (w) { return w.id === featured.workId; })[0] || data.works[0];
       main.appendChild(el("a", { href: "work.html#" + work.id, "aria-label": work.title }, [
@@ -147,7 +164,7 @@
 
   // WORK: titles appear under the WORK menu; one work is shown at a time (work.html#<id>).
   function renderWork() {
-    getJSON(INFO + "works.json").then(function (data) {
+    loadWorks().then(function (data) {
       var works = data.works;
       var texts = {};
       var list = el("ul", { class: "nav__works" }, works.map(function (w) {
